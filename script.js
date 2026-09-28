@@ -3,6 +3,7 @@ const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
+const barraProgresso = document.getElementById("barraProgresso");
 
 const perguntas = [
     {
@@ -85,6 +86,12 @@ function mostraPergunta() {
     caixaPerguntas.textContent = perguntaAtual.enunciado;
     caixaAlternativas.textContent = "";
     mostraAlternativas();
+    atualizarProgresso();
+}
+
+function atualizarProgresso() {
+    const progresso = (atual / perguntas.length) * 100;
+    barraProgresso.style.width = progresso + "%";
 }
 
 function mostraAlternativas() {
@@ -107,12 +114,13 @@ function mostraResultado() {
     caixaPerguntas.textContent = "Em 2049...";
     textoResultado.textContent = historiaFinal;
     caixaAlternativas.textContent = "";
+    barraProgresso.style.width = "100%";
 
     // Sites de acesso (sugestões de IA)
     const sites = document.createElement("div");
     sites.classList.add("sites-acesso");
     sites.innerHTML = `
-        <p>🌐 Sites de IA para explorar:</p>
+        <p>🌐 SITES DE IA PARA EXPLORAR</p>
         <a href="https://chat.openai.com" target="_blank">ChatGPT</a> |
         <a href="https://gemini.google.com" target="_blank">Gemini</a> |
         <a href="https://www.bing.com/create" target="_blank">Bing Image</a> |
